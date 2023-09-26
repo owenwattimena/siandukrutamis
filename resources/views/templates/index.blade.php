@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="assets/css/semi-dark.css" />
     <link rel="stylesheet" href="assets/css/header-colors.css" />
     <title>Amdash - Bootstrap 5 Admin Template</title>
+    @yield('head')
 </head>
 
 <body onload="info_noti()">
@@ -455,7 +456,7 @@
         <!--start page wrapper -->
         <div class="page-wrapper">
             <div class="page-content">
-
+                @yield('content')
             </div>
         </div>
         <!--end page wrapper -->
@@ -552,6 +553,7 @@
     <script src="assets/js/index.js"></script>
     <!--app JS-->
     <script src="assets/js/app.js"></script>
+    @yield('script')
 </body>
 
 </html>
