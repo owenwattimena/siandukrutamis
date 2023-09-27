@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 Route::get('/pengajuan', function () {
     return view('public.pengajuan.index');
-});
+})->name('pengajuan');
