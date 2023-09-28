@@ -412,21 +412,34 @@
                 </div>
                 <nav class="topbar-nav" style="width: 100%">
                     <ul class="metismenu" id="menu">
-                        <li> <a href="index.html">
+                        @auth
+                        <li> <a href="{{ route('admin.dashboard') }}">
+                                <div class="parent-icon">
+                                    <i class="bx bx-home-circle"></i>
+                                </div>
+                                <div class="menu-title">Dashboard</div>
+                            </a>
+                        </li>
+                        @endauth
+                        @guest
+                        <li> <a href="{{ url('/') }}">
                                 <div class="parent-icon">
                                     <i class="bx bx-home-circle"></i>
                                 </div>
                                 <div class="menu-title">Home</div>
                             </a>
                         </li>
-                        <li> <a href="index.html">
+                        @endguest
+                        @auth
+                        <li> <a href="{{ route('admin.warga-miskin') }}">
                                 <div class="parent-icon">
                                     <i class="bx bx-user"></i>
                                 </div>
                                 <div class="menu-title">Warga Miskin</div>
                             </a>
                         </li>
-                        <li> <a href="{{route('pengajuan')}}">
+                        @endauth
+                        <li> <a href="{{route( auth() ? 'admin.pengajuan' : 'pengajuan')}}">
                                 <div class="parent-icon">
                                     <i class="bx bx-envelope"></i>
                                 </div>
@@ -456,6 +469,12 @@
         <!--start page wrapper -->
         <div class="page-wrapper">
             <div class="page-content">
+                @if(session('alert'))
+                <div class="alert alert-{{ session('alert')['type'] }} bg-{{ session('alert')['type'] }} alert-dismissible fade show" role="alert">
+                    <div class="text-white">{{ session('alert')['message'] }}</div>
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 @yield('content')
             </div>
         </div>

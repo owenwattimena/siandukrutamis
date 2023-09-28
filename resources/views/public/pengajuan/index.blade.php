@@ -8,47 +8,54 @@
 <h3>Pengajuan</h3>
 <div class="card">
     <div class="card-body">
-        <form class="needs-validation" novalidate>
+
+        <form class="needs-validation" action="{{ route('pengajuan.create') }}" method="POST">
+            @csrf
             <div class="row g-3">
                 <div class="col-sm-12">
                     <label for="inputNIK" class="form-label">NIK</label>
-                    <input type="text" class="form-control" id="inputNIK" placeholder="Masukan NIK" required>
+                    <input type="text" class="form-control" id="inputNIK" placeholder="Masukan NIK" name="nik" required>
                     <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-sm-12">
                     <label for="inputNkk" class="form-label">Nama Kepala Keluarga</label>
-                    <input type="text" class="form-control" id="inputNkk" placeholder="Masukan Nama Kepala Keluarga" required>
+                    <input type="text" class="form-control" id="inputNkk" placeholder="Masukan Nama Kepala Keluarga" name="nama_kepala_keluarga" required>
                     <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-sm-12">
                     <label for="inputJak" class="form-label">Jumlah Anggota Keluarga</label>
-                    <input type="number" class="form-control" id="inputJak" placeholder="Masukan Jumlah Anggota Keluarga" required>
+                    <input type="number" class="form-control" id="inputJak" placeholder="Masukan Jumlah Anggota Keluarga" name="jumlah_anggota_keluarga" required>
                     <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-sm-12">
                     <label for="inputPekerjaan" class="form-label">Pekerjaan</label>
-                    <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan Pekerjaan" required>
+                    <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan Pekerjaan" name="pekerjaan" required>
                     <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-sm-12">
                     <label for="inputGaji" class="form-label">Gaji/Bulan</label>
-                    <input type="text" class="form-control" id="inputGaji" placeholder="Masukan Gaji/Bulan" required>
+                    <input type="text" class="form-control" id="inputGaji" placeholder="Masukan Gaji/Bulan" name="gaji" required>
                     <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-sm-12">
                     <label for="inputEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Masukan Email" required>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Masukan Email" name="email" required>
                     <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-sm-12">
                     <label for="inputAlamat" class="form-label">Alamat</label>
-                    <textarea class="form-control" id="inputAlamat" placeholder="Masukan Alamat" required></textarea>
+                    <textarea class="form-control" id="inputAlamat" placeholder="Masukan Alamat" name="alamat" required></textarea>
                     <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-sm-12">
                     <label for="inputmap" class="form-label">Pilih Lokasi Rumah di Peta</label>
                     <div id="map" class="map map-home" style="height: 500px; margin-top: 50px"></div>
+                    <input type="hidden" name="latitude" id="inputLatitude">
+                    <input type="hidden" name="longitude" id="inputLongitude">
                     <div class="invalid-feedback">Valid first name is required.</div>
+                </div>
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary w-100">Ajukan</button>
                 </div>
             </div>
         </form>
@@ -83,6 +90,8 @@
         map.on('click', function(e) {
             lat = e.latlng.lat;
             lon = e.latlng.lng;
+            $('#inputLatitude').val(lat);
+            $('#inputLongitude').val(lon);
 
             console.log("You clicked the map at LAT: " + lat + " and LONG: " + lon);
             //Clear existing marker,
@@ -129,11 +138,12 @@
         locationEventCount = locationEventCount + 1;
         // We ignore the first event unless it's the only one received because some devices seem to send a cached
         // location even when maxaimumAge is set to zero
-        if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 1)) {
+        if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 3)) {
             clearTimeout(timerID);
             navigator.geolocation.clearWatch(watchID);
             successCallback(position);
         } else {
+            successCallback(position);
             onWait(position);
         }
     };
