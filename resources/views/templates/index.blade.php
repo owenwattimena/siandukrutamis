@@ -446,7 +446,7 @@
                                 <div class="menu-title">Pengajuan</div>
                             </a>
                         </li>
-                        <li> <a href="index.html">
+                        <li> <a href="{{ route('pembaruan') }}">
                                 <div class="parent-icon">
                                     <i class="bx bx-edit"></i>
                                 </div>

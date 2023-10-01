@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KeluargaController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Web\PembaruanController;
 use App\Http\Controllers\Web\PengajuanController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::get('/', function () {
 });
 Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan');
 Route::post('/pengajuan', [PengajuanController::class, 'create'])->name('pengajuan.create');
+Route::get('/pembaruan', [PembaruanController::class, 'index'])->name('pembaruan');
+Route::post('/pembaruan', [PembaruanController::class, 'create'])->name('pembaruan.create');
 
 Route::prefix('admin')->group(function(){
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -37,5 +40,9 @@ Route::prefix('admin')->group(function(){
             Route::get('{id}', [\App\Http\Controllers\Admin\Controller::class, 'show'])->name('admin.pengajuan.show');
             Route::post('{id}', [\App\Http\Controllers\Admin\PengajuanController::class, 'status'])->name('admin.pengajuan.status');
         });
+        Route::prefix('pembaruan')->group(function(){
+            Route::get('/', [PembaruanController::class, 'index']);
+        });
+
     });
 });
