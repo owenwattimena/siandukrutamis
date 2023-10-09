@@ -439,21 +439,21 @@
                             </a>
                         </li>
                         @endauth
-                        <li> <a href="{{route( auth() ? 'admin.pengajuan' : 'pengajuan')}}">
+                        <li> <a href="{{route(  auth()->user() != null ? 'admin.pengajuan' : 'pengajuan')}}">
                                 <div class="parent-icon">
                                     <i class="bx bx-envelope"></i>
                                 </div>
                                 <div class="menu-title">Pengajuan</div>
                             </a>
                         </li>
-                        <li> <a href="{{ route('pembaruan') }}">
+                        <li> <a href="{{ route( auth()->user() != null ? 'admin.pembaruan' : 'pembaruan') }}">
                                 <div class="parent-icon">
                                     <i class="bx bx-edit"></i>
                                 </div>
                                 <div class="menu-title">Pembaruan Data</div>
                             </a>
                         </li>
-                        <li> <a href="index.html">
+                        <li> <a href="{{ route('pemetaan') }}">
                                 <div class="parent-icon">
                                     <i class="bx bx-map-alt"></i>
                                 </div>
