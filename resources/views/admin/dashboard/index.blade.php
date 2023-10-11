@@ -9,7 +9,7 @@
                 <div class="d-flex align-items-center">
                     <div class="me-auto">
                         <p class="mb-0 text-white">Total Warga Miskin</p>
-                        <h4 class="my-1 text-white">4805</h4>
+                        <h4 class="my-1 text-white">{{ $keluarga }}</h4>
                         {{-- <p class="mb-0 font-13 text-white">+2.5% from last week</p> --}}
                     </div>
                     <div style="font-size: 50px"> <i class="bx bx-user-check text-white"></i> </div>

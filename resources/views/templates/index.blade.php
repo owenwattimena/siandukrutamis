@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/dark-theme.css" />
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/semi-dark.css" />
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/header-colors.css" />
-    <title>Amdash - Bootstrap 5 Admin Template</title>
+    <title>{{ Config::get('app.name', '') }} - {{ Config::get('app.description', 'default') }}</title>
     @yield('head')
 </head>
 

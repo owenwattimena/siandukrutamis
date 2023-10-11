@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function(){
         });
         Route::prefix('pengajuan')->group(function(){
             Route::get('/', [\App\Http\Controllers\Admin\PengajuanController::class, 'index'])->name('admin.pengajuan');
-            Route::get('{id}', [\App\Http\Controllers\Admin\Controller::class, 'show'])->name('admin.pengajuan.show');
+            Route::get('{id}', [\App\Http\Controllers\Admin\PengajuanController::class, 'show'])->name('admin.pengajuan.show');
             Route::post('{id}', [\App\Http\Controllers\Admin\PengajuanController::class, 'status'])->name('admin.pengajuan.status');
         });
         Route::prefix('pembaruan')->group(function(){
